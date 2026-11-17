@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/Azure/azure-init",
+  "revision": "82ede83b61e21c34504b4291acc762b5b34db6a3",
+  "license": "MIT",
+  "adapted_from": {
+    "testinit/testing-server/wireserver_handler.py": "testing-server/wireserver_handler.py",
+    "testinit/testing-server/container_provisioning.py": ["testing-server/module_provisioning.py", "testing-server/container_runner.py"],
+    "testinit/testing-server/test_container_provisioning.py": ["testing-server/test_wireserver.py", "testing-server/test_container_runner.py"],
+    "testinit/tests/provisioning.rs": "scenario model and cross-language report assertions",
+    "testinit/Dockerfile.isolated": "Dockerfile.isolated"
+  },
+  "improvements": [
+    "real external Go SDK consumer rather than an unrelated provisioning agent",
+    "default process E2E requires no Docker, root privileges or fixed Azure IPs",
+    "binary pool snapshots and independent CSV/base64/zlib/gzip verification",
+    "per-server response/capture state and unexpected thread errors fail tests",
+    "separate KVP and HTTP outcomes, caller-selected order and independent failure tests",
+    "guarded disposable pool paths and loopback-only fixture HTTP destinations",
+    "read-only, capability-free and network-disabled optional containers",
+    "unique owned Docker resources, bounded subprocesses and failure cleanup",
+    "SDK-process coverage merged with the strict production Go gate"
+  ],
+  "not_applicable_to_this_library": [
+    "IMDS and OVF provisioning discovery",
+    "hostname, account, password, sudoers and SSH configuration",
+    "provisioning media mount/unmount/eject and marker cleanup",
+    "privileged systemd/host-cgroup/D-Bus integration"
+  ]
+}

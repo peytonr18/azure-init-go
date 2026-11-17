@@ -1,0 +1,31 @@
+{
+  "repository": "https://github.com/Azure/azure-init",
+  "main_revision": "5bf373c219f223ddf7839229784d95fab1db4254",
+  "kvp_revision": "82ede83b61e21c34504b4291acc762b5b34db6a3",
+  "health_pull_request": "https://github.com/Azure/azure-init/pull/370",
+  "wireserver_revision": "5bf373c219f223ddf7839229784d95fab1db4254",
+  "rust_test_baseline": {
+    "library_unit_cases": 755,
+    "cli_integration_cases": 85,
+    "diagnostics_integration_cases": 39,
+    "documentation_tests": 4
+  },
+  "source_mapping": {
+    "libazureinit-kvp/src/store.rs": ["kvp/store.go", "kvp/system.go", "kvp/lock_linux.go"],
+    "libazureinit-kvp/src/error.rs": ["kvp/errors.go"],
+    "libazureinit-kvp/src/report.rs": ["kvp/report.go"],
+    "libazureinit-kvp/src/diagnostics": [
+      "kvp/diagnostic.go",
+      "kvp/encoding.go",
+      "kvp/writer.go",
+      "kvp/reader.go",
+      "kvp/cloud_init.go",
+      "kvp/time.go",
+      "kvp/json.go"
+    ],
+    "libazureinit-kvp/src/cli.rs": ["internal/cli/cli.go", "internal/cli/store.go", "cmd/azure-init-kvp/main.go"],
+    "libazureinit-kvp/src/vm_id.rs": ["kvp/identity.go"],
+    "libazureinit/src/wireserver.rs": ["wireserver/client.go"],
+    "libazureinit/src/http.rs": ["wireserver/client.go"]
+  }
+}

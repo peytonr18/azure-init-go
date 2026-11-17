@@ -1,0 +1,70 @@
+{
+  "reference": "82ede83b61e21c34504b4291acc762b5b34db6a3",
+  "inventory": "rust-tests.txt",
+  "rules": [
+    {
+      "rust_prefix": "cli::tests::",
+      "cases": 102,
+      "go_tests": ["internal/cli/TestStorageCommandsAndExitCodes", "internal/cli/TestCLIValidationDoesNotWrite", "internal/cli/TestCommandSpecificHelp", "internal/cli/TestConstructorFailuresAndExitClassification", "internal/cli/TestVMIDDefaultsAndLookupErrors", "internal/cli/TestCommandStoreFailures", "internal/cli/TestAllCommandOutputModesAndFailures", "internal/cli/TestInputFilesAndValidation", "internal/cli/TestSupportingDataQuoting", "internal/cli/TestEntryTextVariantsAndErrors"]
+    },
+    {
+      "rust_prefix": "diagnostics::cloud_init::tests::",
+      "cases": 59,
+      "go_tests": ["kvp/TestCloudInitCurrentLegacyAndCompressed", "kvp/TestCapturedCloudInitPoolBothLayouts", "kvp/TestCloudChunksReassembleBeforeJSONUnescaping", "kvp/TestStrictCloudJSONSurrogates", "kvp/TestCloudInitMalformedAndNumericContracts", "kvp/TestCloudChunkAndEnvelopeFailures", "kvp/TestMalformedMetadataErrorPropagation", "kvp/TestJSONNumberAndEscapeContracts"]
+    },
+    {
+      "rust_prefix": "diagnostics::diagnostic::tests::",
+      "cases": 49,
+      "go_tests": ["kvp/TestJSONModelContracts", "kvp/TestDiagnosticJSONShapes", "kvp/TestErrorContracts", "kvp/TestDiagnosticWireAndRoundTrip", "kvp/TestRFC3339Compatibility"]
+    },
+    {
+      "rust_prefix": "diagnostics::encoding::tests::",
+      "cases": 61,
+      "go_tests": ["kvp/TestEncodingsAndStrictStreamCompletion", "kvp/TestIndependentCodecFixturesAndEveryTruncation", "kvp/TestEncodingOutputFailures"]
+    },
+    {
+      "rust_prefix": "diagnostics::reader::tests::",
+      "cases": 131,
+      "go_tests": ["kvp/TestReaderErrorsAndPhysicalOrdering", "kvp/TestNativeMetadataValidation", "kvp/TestIndependentEventFieldsAndLargeDurations", "kvp/TestMaximumChunksAndUnboundedReader", "kvp/TestFramingAndUTF8Failures", "kvp/TestStorePropagatesEveryFilesystemFailure", "kvp/TestRFC3339Compatibility", "kvp/TestFloatDurationUsesExactBinaryRounding"]
+    },
+    {
+      "rust_prefix": "diagnostics::writer::tests::",
+      "cases": 78,
+      "go_tests": ["kvp/TestDiagnosticWireAndRoundTrip", "kvp/TestWriterValidationWritesNothing", "kvp/TestWriterPrecisionAndCompleteKeyBudget", "kvp/TestChunkingPreservesUTF8AndEmptyPayload", "kvp/TestMaximumChunksAndUnboundedReader", "kvp/TestUUIDEntropyAndIdentityErrors", "kvp/TestConcurrentBatchesDoNotInterleave"]
+    },
+    {
+      "rust_prefix": "error::tests::",
+      "cases": 7,
+      "go_tests": ["kvp/TestErrorContracts", "kvp/TestStoreJoinsOperationAndCloseFailures"]
+    },
+    {
+      "rust_prefix": "report::tests::",
+      "cases": 56,
+      "go_tests": ["kvp/TestReportWireLayouts", "kvp/TestReportCSVAndPreservedIdentity", "kvp/TestReportMalformedCases", "kvp/TestHealthHelpersReplaceOnlyReport", "kvp/TestReportInvalidGoValuesAndRequiredFields", "kvp/TestReservedReportAtAndAboveKeyLimit"]
+    },
+    {
+      "rust_prefix": "store::tests::",
+      "cases": 203,
+      "go_tests": ["kvp/TestStoreSelectionAndMissingFile", "kvp/TestBinaryRecordsAndSizePolicies", "kvp/TestDuplicatesAndSwapRemoval", "kvp/TestBulkValidationAndUniqueKeyBudget", "kvp/TestSafeStoreReadsAndDeletesUnsafeKeys", "kvp/TestStorePropagatesEveryFilesystemFailure", "kvp/TestStoreMetadataAndBootFailures", "kvp/TestIncompleteRecordsAndShortWrites", "kvp/TestStoreJoinsOperationAndCloseFailures", "kvp/TestStaleBoundary", "kvp/TestConcurrentUniqueKeyBudgetAndReaders", "kvp/TestLockErrorsInterruptsAndRollback", "kvp/TestStoreHoldsBothLockDomains", "kvp/TestPoolNamesAndUnnormalizedPaths"],
+      "representation_notes": "Go uses positioned ReadAt/WriteAt I/O rather than Rust's cursor iterator. Seek, iterator lifetime/size_hint, and mock-backend-only checks map to Go scan/removal, lock-release and injected I/O contracts. Go file writes are unbuffered; cleanup/write failures are tested without inventing a Rust-style flush syscall."
+    },
+    {
+      "rust_prefix": "vm_id::tests::",
+      "cases": 9,
+      "go_tests": ["kvp/TestVMIdentityLookup", "kvp/TestUUIDEntropyAndIdentityErrors"],
+      "representation_notes": "Go explicitly returns lookup/conversion errors rather than logging and returning an optional or invalid Gen1 identity."
+    },
+    {
+      "rust_prefix": "libazureinit-kvp/src/",
+      "cases": 4,
+      "go_tests": ["kvp/TestDiagnosticWireAndRoundTrip", "kvp/TestHealthHelpersReplaceOnlyReport", "internal/cli/TestRealBinaryCommands"]
+    },
+    {
+      "rust_prefix": "",
+      "cases": 124,
+      "go_tests": ["internal/cli/TestRealBinaryCommands", "internal/cli/TestStorageCommandsAndExitCodes", "kvp/TestCapturedCloudInitPoolBothLayouts", "kvp/TestReservedReportAtAndAboveKeyLimit", "internal/compat/TestGoWritesRustReads", "internal/compat/TestRustWritesGoReads", "internal/compat/TestMixedRustGoWriters", "internal/compat/TestCLIStorageParity", "internal/compat/TestCLIArgumentAndHelpParity"]
+    }
+  ],
+  "additional_go_contracts": ["internal/compat/TestGeneratedDurationParity", "wireserver/TestJSONRequestContractsAndIndependence", "wireserver/TestHTTPStatusClassification", "wireserver/TestCancellationAndRequestTimeout", "wireserver/TestResponseCloseAndInvalidInputs", "wireserver/TestRedirectReplaysExactJSONBody"],
+  "metric": "100% of Linux production Go executable statements/blocks, including the instrumented real CLI; no package exclusions. Contract mapping is by observable behavior, not a claim that Go and Rust have identical private test functions."
+}

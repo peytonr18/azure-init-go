@@ -1,0 +1,4 @@
+*
+!Dockerfile.isolated
+!testing-server
+!testing-server/*.py

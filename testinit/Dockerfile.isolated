@@ -1,0 +1,14 @@
+ARG BASE_IMAGE=ubuntu:24.04
+FROM ${BASE_IMAGE}
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3 \
+    && apt-get clean \
+    && mkdir -p /test \
+    && touch /test/isolated-kvp-fixture
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+COPY testing-server/ /test/server/
+USER 65532:65532
+WORKDIR /test
+ENTRYPOINT ["python3", "-B", "/test/server/module_provisioning.py", "--inside"]
